@@ -1,17 +1,18 @@
 <?php
 	//Basic Database Connection....................///////////////////////  
-	try 
-	{
-		define('HOST','localhost');
-		define('DB','test');
-		define('USER','root');
-		define('PASS','');
-		$pdo = new PDO('mysql:host='.HOST.';dbname='.DB,USER,PASS);
-	} 
-	catch (PDOException $e) 
-	{
-		die($e->getMessage());
-	}
+	// try 
+	// {
+	// 	define('BASE_URL', 'http://localhost/');
+	// 	define('HOST','localhost');
+	// 	define('DB','test');
+	// 	define('USER','root');
+	// 	define('PASS','');
+	// 	$pdo = new PDO('mysql:host='.HOST.';dbname='.DB,USER,PASS);
+	// } 
+	// catch (PDOException $e) 
+	// {
+	// 	die($e->getMessage());
+	// }
 
 	//INSERT VALUES WITH PREPARE STATEMENT.......///////////////////////////////////////
 	// $insert = $pdo->prepare('INSERT INTO phone(`name`,`phone`,`date`) VALUES(?,?,?)');
@@ -42,4 +43,94 @@
 	// $delete = $pdo->prepare('DELETE FROM phone WHERE id=?');
 	// $delete->execute(['4']);
 
+	define('BASE_URL', 'http://localhost/');
+
+	if ($_SERVER['REQUEST_METHOD']=='POST') 
+	{
+		echo $name = $_POST['name'];
+		echo $phone = $_POST['phone'];
+		echo $date = $_POST['date'];
+	}
+
 ?>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>PDO CRUD</title>
+
+  </head>
+  <body>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+		<a class="navbar-brand" href="<?php echo BASE_URL;?>"><b>PDO CRUD</b></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="" aria-current="page" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Link</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Dropdown
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="#">Action</a></li>
+							<li><a class="dropdown-item" href="#">Another action</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="#">Something else here</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+					</li>
+				</ul>
+				<form class="d-flex">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+
+  	<div class="container mt-5">
+		<!-- Modal -->
+		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form method="post" action="<?php echo BASE_URL.'index'; ?> ">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">Create Contract</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<input class="form-control mb-3" type="text" name="name" placeholder="Contract Name"/>
+							<input class="form-control mb-3" type="text" name="phone" placeholder="Phone Number"/>
+							<input class="form-control mb-3" type="date" name="date" placeholder="Date"/>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<input type="submit" class="btn btn-primary" name="add" value="Add" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  </body>
+</html>
