@@ -1,0 +1,45 @@
+<?php
+	//Basic Database Connection....................///////////////////////  
+	try 
+	{
+		define('HOST','localhost');
+		define('DB','test');
+		define('USER','root');
+		define('PASS','');
+		$pdo = new PDO('mysql:host='.HOST.';dbname='.DB,USER,PASS);
+	} 
+	catch (PDOException $e) 
+	{
+		die($e->getMessage());
+	}
+
+	//INSERT VALUES WITH PREPARE STATEMENT.......///////////////////////////////////////
+	// $insert = $pdo->prepare('INSERT INTO phone(`name`,`phone`,`date`) VALUES(?,?,?)');
+	// $insert->execute(['RAIHAN UDDIN','+88 029898474987','10-JUN-2021']);
+
+
+	//SELECT VALUES WITH PREPARE STATEMENT............./////////////////////////////////
+	// $select = $pdo->prepare('SELECT * FROM phone WHERE name=? LIMIT 5');
+	// $select->execute(['RAIHAN UDDIN']);
+
+	// while ($row = $select->fetch()) {
+	// 	echo '<table><tr>';
+	// 	echo '<td>'.$row['id'].'<td>';
+	// 	echo '<td>'.$row['name'].'<td>';
+	// 	echo '<td>'.$row['phone'].'<td>';
+	// 	echo '<td>'.$row['date'].'<td>';
+	// 	echo '</tr></table>';
+	// }
+
+
+
+	//UPDATE VALUES WITH PREPARE STATEMENT............./////////////////////////////////
+	// $update = $pdo->prepare('UPDATE phone SET phone=? WHERE id=?');
+	// $update->execute(['+977 2687434','3']);
+
+
+	//DELETE VALUES WITH PREPARE STATEMENT............./////////////////////////////////
+	// $delete = $pdo->prepare('DELETE FROM phone WHERE id=?');
+	// $delete->execute(['4']);
+
+?>
